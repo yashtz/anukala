@@ -54,19 +54,22 @@ function ProductPage() {
     navigate('/shop');
   };
 
+  const handleBuyNow = () => {
+    navigate('/checkout', { state: product });
+  };
+  
+
   return product ? (
-    <div className="min-h-screen bg-[#78b087] p-8 flex">
-
-      <div className="w-1/4 flex flex-col justify-start">
-
+    <div className="min-h-screen bg-[#78b087] p-8 flex flex-col lg:flex-row lg:p-12">
+      <div className="lg:w-1/2 flex flex-col items-start mb-8 lg:mb-0">
         <button
           onClick={handleBackToShop}
-          className="mb-4 px-4 py-2 bg-black text-white rounded-sm"
+          className="mb-6 px-4 py-2 bg-black text-white rounded-md shadow hover:bg-gray-800 transition duration-300"
         >
           ← Back to Shop
         </button>
 
-        <div className="bg-gray-300 h-96 w-full mb-4">
+        <div className="bg-gray-300 h-96 w-full rounded-lg overflow-hidden shadow-lg">
           <img
             src={product.imageUrl} 
             alt={product.name}
@@ -75,23 +78,33 @@ function ProductPage() {
         </div>
       </div>
 
-      <div className="w-3/4 pl-8">
-        <h1 className="text-4xl font-bold">{product.name}</h1>
-        <p className="text-2xl">{product.price}</p>
-        <p className="mt-4">{product.description}</p>
-        <p className="mt-2">Dimensions: {product.dimensions}</p>
-        <p className="mt-2">Medium: {product.medium}</p>
-        <p className="mt-2">Frame: {product.frame}</p>
+      <div className="lg:w-1/2 lg:pl-12 text-left">
+        <h1 className="text-4xl font-bold text-gray-800">{product.name}</h1>
+        <p className="text-2xl font-semibold text-gray-700 mt-2">{product.price}</p>
 
-        <div className="mt-8">
-          <button className="px-4 py-2 bg-black text-white mr-4">Add to Cart</button>
-          <button className="px-4 py-2 bg-blue-600 text-white">Buy Now</button>
+        <div className="text-gray-700 mt-6">
+          <p className="text-lg">{product.description}</p>
+          <p className="mt-4"><strong>Dimensions:</strong> {product.dimensions}</p>
+          <p className="mt-2"><strong>Medium:</strong> {product.medium}</p>
+          <p className="mt-2"><strong>Frame:</strong> {product.frame}</p>
+        </div>
+
+        <div className="mt-10 flex space-x-4">
+          <button className="px-6 py-3 bg-black text-white rounded-md shadow hover:bg-gray-800 transition duration-300">
+            Add to Cart
+          </button>
+          <button
+            onClick={handleBuyNow}
+            className="px-6 py-3 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700 transition duration-300"
+          >
+            Buy Now
+          </button>
         </div>
       </div>
     </div>
   ) : (
     <div className="min-h-screen bg-[#c3c796] flex items-center justify-center">
-      <h2 className="text-2xl">Product Not Found</h2>
+      <h2 className="text-2xl text-gray-800">Product Not Found</h2>
     </div>
   );
 }

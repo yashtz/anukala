@@ -5,7 +5,8 @@ import HeroSection from './pages/heroSection';
 import ArrivalsSection from './pages/arrivalSection';
 import Footer from './components/footer';
 import ShopPaintings from './pages/shop';
-import ProductPage from './pages/product';  // Import ProductPage component
+import ProductPage from './pages/product';
+import CheckoutPage from './pages/CheckoutPage';
 import Login from './components/login';
 import Signup from './components/signup';
 import About from './pages/about';
@@ -42,11 +43,18 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           
-          {/* New dynamic route for individual product pages */}
           <Route path="/product/:productId" element={
             <>
               <Navbar />
               <ProductPage />
+              <Footer />
+            </>
+          } />
+          
+          <Route path="/checkout" element={
+            <>
+              <Navbar />
+              <CheckoutPage />
               <Footer />
             </>
           } />

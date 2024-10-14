@@ -14,7 +14,6 @@ function ShopPaintings() {
     setSelectedCategory(category);
   };
 
-
   const handleProductClick = (productId) => {
     navigate(`/product/${productId}`);
   };
@@ -24,35 +23,24 @@ function ShopPaintings() {
       <div className="flex justify-between items-center mb-6">
    
         <div className="flex space-x-4">
-          <button
-            className={`px-4 py-2 rounded-sm border ${selectedCategory === 'Abstract' ? 'bg-black text-white' : 'border-black text-black'}`}
-            onClick={() => handleCategoryClick('Abstract')}
-          >
-            Abstract
-          </button>
-          <button
-            className={`px-4 py-2 rounded-sm border ${selectedCategory === 'Landscapes' ? 'bg-black text-white' : 'border-black text-black'}`}
-            onClick={() => handleCategoryClick('Landscapes')}
-          >
-            Landscapes
-          </button>
-          <button
-            className={`px-4 py-2 rounded-sm border ${selectedCategory === 'Portraits' ? 'bg-black text-white' : 'border-black text-black'}`}
-            onClick={() => handleCategoryClick('Portraits')}
-          >
-            Portraits
-          </button>
-          <button
-            className={`px-4 py-2 rounded-sm border ${selectedCategory === 'Still Life' ? 'bg-black text-white' : 'border-black text-black'}`}
-            onClick={() => handleCategoryClick('Still Life')}
-          >
-            Still Life
-          </button>
+          {['Abstract', 'Landscapes', 'Portraits', 'Still Life'].map((category) => (
+            <button
+              key={category}
+              className={`px-4 py-2 rounded-sm border transition duration-300 ${
+                selectedCategory === category 
+                  ? 'bg-black text-white shadow-lg' 
+                  : 'border-black text-black hover:bg-black hover:text-white'
+              }`}
+              onClick={() => handleCategoryClick(category)}
+            >
+              {category}
+            </button>
+          ))}
         </div>
 
         <div className="flex items-center space-x-2">
           <label htmlFor="sort" className="text-black">Sort By</label>
-          <select id="sort" className="border border-black px-2 py-1 rounded-sm">
+          <select id="sort" className="border border-black px-2 py-1 rounded-sm focus:outline-none focus:ring-2 focus:ring-black">
             <option value="popular">Popular</option>
             <option value="new">New Arrivals</option>
             <option value="price-low-high">Price: Low to High</option>
@@ -61,32 +49,21 @@ function ShopPaintings() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"> 
-        <div className="bg-gray-200 h-80 flex flex-col justify-center items-center cursor-pointer" onClick={() => handleProductClick('Enlightened Serenity')}>
-          <img src={image12} alt="Enlightened Serenity" className="w-full h-64 object-cover mb-4" /> 
-          <h2 className="text-center text-lg font-bold">Enlightened Serenity</h2>
-        </div>
-
-        <div className="bg-gray-200 h-80 flex flex-col justify-center items-center cursor-pointer" onClick={() => handleProductClick('Rainy Day Romance')}>
-          <img src={image2} alt="Rainy Day Romance" className="w-full h-64 object-cover mb-4" /> 
-          <h2 className="text-center text-lg font-bold">Rainy Day Romance</h2>
-        </div>
-
-        <div className="bg-gray-200 h-80 flex flex-col justify-center items-center cursor-pointer" onClick={() => handleProductClick('Azure Blossoms')}>
-          <img src={image3} alt="Azure Blossoms" className="w-full h-64 object-cover mb-4" /> 
-          <h2 className="text-center text-lg font-bold">Azure Blossoms</h2>
-        </div>
-
-        <div className="bg-gray-200 h-80 flex flex-col justify-center items-center cursor-pointer" onClick={() => handleProductClick('Poppy Paradise')}>
-          <img src={image4} alt="Poppy Paradise" className="w-full h-64 object-cover mb-4" />
-          <h2 className="text-center text-lg font-bold">Poppy Paradise</h2>
-        </div>
-
-
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"> 
+        {[{img: image12, title: 'Enlightened Serenity'}, {img: image2, title: 'Rainy Day Romance'}, {img: image3, title: 'Azure Blossoms'}, {img: image4, title: 'Poppy Paradise'}].map((product, index) => (
+          <div 
+            key={index}
+            className="bg-gray-200 h-80 flex flex-col justify-center items-center cursor-pointer p-4 rounded-lg transition-transform transform hover:scale-105 shadow-md"
+            onClick={() => handleProductClick(product.title)}
+          >
+            <img src={product.img} alt={product.title} className="w-full h-64 object-cover rounded-lg mb-4" /> 
+            <h2 className="text-center text-lg font-bold">{product.title}</h2>
+          </div>
+        ))}
       </div>
 
       <div className="text-right mt-4 text-black">
-        Showing 8 Products
+        Showing 4 Products
       </div>
     </div>
   );
