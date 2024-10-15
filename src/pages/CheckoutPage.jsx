@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 function CheckoutPage() {
   const location = useLocation();
   const product = location.state;
+
+  const [shippingStep, setShippingStep] = useState(false);
+  const [selectedShipping, setSelectedShipping] = useState(null);
+
+  const handleContinueToShipping = () => {
+    setShippingStep(true);
+  };
+
+  const handleShippingOptionClick = (option) => {
+    setSelectedShipping(option);
+  };
 
   return (
     <div className="min-h-screen bg-[#78b087] p-12 flex justify-between">
@@ -13,36 +24,71 @@ function CheckoutPage() {
         <div className="text-lg font-medium mb-8 flex items-center">
           <span className="border-b-2 border-black pb-1">Address</span>
           <span className="mx-4">——</span>
-          <span className="text-gray-500">Shipping</span>
+          <span className={shippingStep ? "border-b-2 border-black pb-1" : "text-gray-500"}>Shipping</span>
           <span className="mx-4">——</span>
           <span className="text-gray-500">Payment</span>
         </div>
 
-        <h3 className="text-xl font-semibold mb-4">Shipping Information</h3>
-        <form className="grid grid-cols-2 gap-4">
-          <input type="text" placeholder="First Name" className="p-3 border border-gray-400" />
-          <input type="text" placeholder="Last Name" className="p-3 border border-gray-400" />
-          <input type="text" placeholder="Address" className="col-span-2 p-3 border border-gray-400" />
-          <input type="text" placeholder="Apartment, suite, etc (optional)" className="col-span-2 p-3 border border-gray-400" />
-          <input type="text" placeholder="City" className="p-3 border border-gray-400" />
-          <select className="p-3 border border-gray-400">
-            <option>Country</option>
-            <option>India</option>
-            <option>USA</option>
-            <option>UK</option>
-          </select>
-          <input type="text" placeholder="Zipcode" className="p-3 border border-gray-400" />
-          <input type="text" placeholder="Optional" className="col-span-2 p-3 border border-gray-400" />
+        {shippingStep ? (
+          <div>
+            <h3 className="text-xl font-semibold mb-4">Choose Shipping Option</h3>
+            <div className="flex flex-col space-y-4">
+              <div
+                onClick={() => handleShippingOptionClick('regular')}
+                className={`p-4 border cursor-pointer ${
+                  selectedShipping === 'regular' ? 'bg-black text-white' : 'bg-white text-black'
+                }`}
+              >
+                Regular Delivery - Free
+              </div>
+              <div
+                onClick={() => handleShippingOptionClick('express')}
+                className={`p-4 border cursor-pointer ${
+                  selectedShipping === 'express' ? 'bg-black text-white' : 'bg-white text-black'
+                }`}
+              >
+                Express Delivery - Rs. 100
+              </div>
+            </div>
 
-          <div className="col-span-2 mt-4 flex items-center">
-            <input type="checkbox" id="save-info" className="mr-2" />
-            <label htmlFor="save-info">Save contact information</label>
+            {selectedShipping && (
+              <button className="mt-8 px-4 py-3 bg-black text-white font-semibold rounded-sm hover:bg-gray-700">
+                Continue to payment
+              </button>
+            )}
           </div>
+        ) : (
+          <div>
+            <h3 className="text-xl font-semibold mb-4">Shipping Information</h3>
+            <form className="grid grid-cols-2 gap-4">
+              <input type="text" placeholder="First Name" className="p-3 border border-gray-400" />
+              <input type="text" placeholder="Last Name" className="p-3 border border-gray-400" />
+              
+              <input type="text" placeholder="Address" className="col-span-2 p-3 border border-gray-400" />
+              <input type="text" placeholder="Apartment, suite, etc (optional)" className="col-span-2 p-3 border border-gray-400" />
+              <input type="text" placeholder="City" className="p-3 border border-gray-400" />
+              
+              <select className="p-3 border border-gray-400">
+                <option>Country</option>
+                <option>India</option>
+                <option>USA</option>
+                <option>UK</option>
+              </select>
+              
+              <input type="text" placeholder="Zipcode" className="p-3 border border-gray-400" />
+              <input type="text" placeholder="Optional" className="col-span-2 p-3 border border-gray-400" />
 
-          <button className="col-span-2 mt-4 px-4 py-3 bg-black text-white font-semibold rounded-sm hover:bg-gray-700">
-            Continue to shipping
-          </button>
-        </form>
+              <div className="col-span-2 mt-4 flex items-center">
+                <input type="checkbox" id="save-info" className="mr-2" />
+                <label htmlFor="save-info">Save contact information</label>
+              </div>
+            </form>
+
+            <button type="button" onClick={handleContinueToShipping} className="mt-4 px-4 py-3 bg-black text-white font-semibold rounded-sm hover:bg-gray-700">
+              Continue to shipping
+            </button>
+          </div>
+        )}
       </div>
 
       <div className="w-1/3 pl-8">
