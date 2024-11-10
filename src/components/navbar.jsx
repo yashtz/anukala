@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { FaShoppingCart } from 'react-icons/fa'; 
+import { Link } from 'react-router-dom'; 
 const Navbar = () => {
   return (
     <nav className="flex justify-between items-center px-8 py-4 bg-rose-950">
@@ -12,8 +11,6 @@ const Navbar = () => {
         
       </div>
       <div className="space-x-4 flex items-center">
-      
-        <FaShoppingCart className="text-xl hover:text-blue-200 mx-4 text-white" />
         <Link to="/login" className="text-lg font-yeseva hover:underline text-white">Login</Link>
       </div>
     </nav>

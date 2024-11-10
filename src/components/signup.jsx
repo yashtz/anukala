@@ -24,13 +24,13 @@ const SignupPage = () => {
       >
         {/* Optional: Add a dark overlay on the image */}
         <div className="w-full h-full bg-black opacity-50 flex justify-center items-center">
-          <h1 className="text-white text-5xl font-yellowtail font-bold text-center">Anukala</h1>
+          <h1 className="text-white text-5xl font-graytail font-bold text-center">Anukala</h1>
         </div>
       </div>
 
       {/* Right side: 40% width with Sign Up form */}
       <div className="w-2/5 bg-rose-950 p-8 flex flex-col justify-center">
-        <form className="w-full bg-yellow-50 p-6 rounded-lg shadow-lg" onSubmit={handleSignup}>
+        <form className="w-full bg-gray-50 p-6 rounded-lg shadow-lg" onSubmit={handleSignup}>
           <h2 className="text-4xl font-bold font-yeseva mb-8 text-center text-rose-950">Sign Up</h2>
 
           <div className="mb-4">

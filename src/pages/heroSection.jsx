@@ -26,7 +26,7 @@ const HeroSection = () => {
   }, [images.length]);
 
   return (
-    <div className="h-screen flex flex-col items-center justify-start bg-yellow-100 text-center px-4 pt-20">
+    <div className="h-screen flex flex-col items-center justify-start bg-gray-100 text-center px-4 pt-20">
       <div
         className="w-[80%] h-[80vh] bg-cover bg-center transition-opacity duration-1000"
         style={{ backgroundImage: `url(${images[currentImageIndex]})` }}

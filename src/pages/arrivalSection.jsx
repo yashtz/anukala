@@ -6,7 +6,7 @@ import image8 from '../resources/image8.jpeg';
 
 const ArrivalsSection = () => {
   return (
-    <div className="text-center py-20 bg-yellow-100"> 
+    <div className="text-center py-20 bg-gray-100"> 
       <h2 className="text-4xl mb-8">Our latest arrivals</h2> 
       <button className="px-8 py-3 border border-black mb-12 hover:bg-black hover:text-white transition">
         Shop All

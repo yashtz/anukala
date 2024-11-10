@@ -61,11 +61,11 @@ function ProductPage() {
   
 
   return product ? (
-    <div className="min-h-screen bg-yellow-100 p-8 flex flex-col lg:flex-row lg:p-12">
+    <div className="min-h-screen bg-gray-100 p-8 flex flex-col lg:flex-row lg:p-12">
       <div className="lg:w-1/2 flex flex-col items-start mb-8 lg:mb-0">
         <button
           onClick={handleBackToShop}
-          className="mb-6 px-4 py-2 bg-rose-950 text-white rounded-md shadow hover:bg-yellow-100 hover:text-rose-950 hover:outline hover:outline-rose-950 transition duration-300"
+          className="mb-6 px-4 py-2 bg-rose-950 text-white rounded-md shadow hover:bg-gray-100 hover:text-rose-950 hover:outline hover:outline-rose-950 transition duration-300"
         >
           ← Back to Shop
         </button>

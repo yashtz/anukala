@@ -19,13 +19,13 @@ const LoginPage = () => {
       >
         {/* Optional: Add a dark overlay on the image */}
         <div className="w-full h-full bg-black opacity-50 flex justify-center items-center">
-          <h1 className="text-white text-5xl font-yellowtail font-bold text-center">Anukala</h1>
+          <h1 className="text-white text-5xl font-graytail font-bold text-center">Anukala</h1>
         </div>
       </div>
 
       {/* Right side: 40% width with Login form */}
       <div className="w-2/5 bg-rose-950 p-8 flex flex-col justify-center">
-        <form className="w-full bg-yellow-100 p-6 rounded-lg shadow-lg" onSubmit={handleLogin}>
+        <form className="w-full bg-gray-100 p-6 rounded-lg shadow-lg" onSubmit={handleLogin}>
           <h2 className="text-4xl font-bold font-yeseva mb-8 text-center text-rose-950">Login</h2>
 
           <div className="mb-4">

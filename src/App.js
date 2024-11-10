@@ -10,12 +10,14 @@ import CheckoutPage from './pages/CheckoutPage';
 import Login from './components/login';
 import Signup from './components/signup';
 import About from './pages/about';
+import Confirmation from './pages/confirmation';
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Routes>
+          {/* Home Page Route */}
           <Route path="/" element={
             <>
               <Navbar />
@@ -24,6 +26,8 @@ function App() {
               <Footer />
             </>
           } />
+
+          {/* Shop Page Route */}
           <Route path="/shop" element={
             <>
               <Navbar />
@@ -32,6 +36,7 @@ function App() {
             </>
           } />
 
+          {/* About Page Route */}
           <Route path="/about" element={
             <>
               <Navbar />
@@ -40,9 +45,11 @@ function App() {
             </>
           } />
 
+          {/* Login & Signup Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           
+          {/* Product Details Route */}
           <Route path="/product/:productId" element={
             <>
               <Navbar />
@@ -50,11 +57,21 @@ function App() {
               <Footer />
             </>
           } />
-          
+
+          {/* Checkout Page Route */}
           <Route path="/checkout" element={
             <>
               <Navbar />
               <CheckoutPage />
+              <Footer />
+            </>
+          } />
+
+          {/* Confirmation Page Route */}
+          <Route path="/confirmation" element={
+            <>
+              <Navbar />
+              <Confirmation />
               <Footer />
             </>
           } />

@@ -19,7 +19,7 @@ function ShopPaintings() {
   };
 
   return (
-    <div className="w-full min-h-screen font-yeseva bg-yellow-100 px-4 py-8"> 
+    <div className="w-full min-h-screen font-yeseva bg-gray-100 px-4 py-8"> 
       <div className="flex justify-between items-center mb-6">
    
         <div className="flex space-x-4">
@@ -53,7 +53,7 @@ function ShopPaintings() {
         {[{img: image12, title: 'Enlightened Serenity'}, {img: image2, title: 'Rainy Day Romance'}, {img: image3, title: 'Azure Blossoms'}, {img: image4, title: 'Poppy Paradise'}].map((product, index) => (
           <div 
             key={index}
-            className="bg-yellow-100 outline outline-pink-950 h-80 flex flex-col justify-center items-center cursor-pointer p-4 rounded-lg transition-transform transform hover:scale-105 shadow-md"
+            className="bg-gray-100 outline outline-pink-950 h-80 flex flex-col justify-center items-center cursor-pointer p-4 rounded-lg transition-transform transform hover:scale-105 shadow-md"
             onClick={() => handleProductClick(product.title)}
           >
             <img src={product.img} alt={product.title} className="w-full h-64 object-cover rounded-lg mb-4" /> 

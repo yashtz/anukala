@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import GooglePayLogo from '../resources/GooglePay.svg';
 import AmazonPayLogo from '../resources/AmazonPay.png';
 import PhonePeLogo from '../resources/PhonePe.png';
 import PaytmLogo from '../resources/Paytm.svg';
-import MastercardLogo from '../resources/Mastercard.svg';
+import MastercardLogo from '../resources/Mastercard.webp';
 import VisaLogo from '../resources/Visa.png';
-import RuPayLogo from '../resources/RuPay.webp';
+import RuPayLogo from '../resources/RuPay.png';
 
 
 function CheckoutPage() {
   const location = useLocation();
   const product = location.state;
-
+  const navigate = useNavigate();
   const [shippingStep, setShippingStep] = useState(false);
   const [paymentStep, setPaymentStep] = useState(false);
   const [selectedShipping, setSelectedShipping] = useState(null);
@@ -62,8 +62,12 @@ function CheckoutPage() {
     }
   };
 
+  const handleCompletePayment = () => {
+    navigate('/confirmation'); // Navigate to the Confirmation page
+  };
+
   return (
-    <div className="min-h-screen bg-yellow-100 p-12 flex justify-between">
+    <div className="min-h-screen bg-gray-100 p-12 flex justify-between">
       <div className="w-2/3 pr-12">
         <h2 className="text-4xl font-bold font-yeseva text-rose-950 mb-8">Checkout</h2>
 
@@ -124,7 +128,7 @@ function CheckoutPage() {
                   selectedPayment === 'card' ? 'bg-black text-white' : 'bg-white text-black'
                 }`}
               >
-                Card Payment
+                NEFT/IMPS
               </div>
             </div>
 
@@ -152,16 +156,23 @@ function CheckoutPage() {
     </div>
     {selectedUPI && (
       <div className="mt-4">
-        <input
+      <img 
+        src="./icici.jpg" 
+        alt="Order Confirmed" 
+        className="w-48 h-44 mb-6" 
+      />
+
+
+        {/* <input
           type="text"
           placeholder="Enter UPI ID"
           value={upiId}
           onChange={(e) => setUpiId(e.target.value)}
           className="w-full p-3 border border-gray-400 mb-4"
-        />
-        <button className="mt-8 px-4 py-3 bg-black text-white font-semibold rounded-sm hover:bg-gray-700">
-          Complete Payment
-        </button>
+        /> */}
+                    <button onClick={handleCompletePayment} className="mt-8 px-4 py-3 bg-black text-white font-semibold rounded-sm hover:bg-gray-700">
+                      Complete Payment
+                    </button>
       </div>
     )}
   </div>
@@ -170,12 +181,12 @@ function CheckoutPage() {
 
 {selectedPayment === 'card' && (
   <div>
-    <h4 className="mt-4 text-lg font-semibold">Select Card Type</h4>
+    <h4 className="mt-4 text-lg font-semibold">Select Payment Type</h4>
     <div className="flex flex-col space-y-2">
       {[
-        { name: 'Mastercard', logo: MastercardLogo },
-        { name: 'Visa', logo: VisaLogo },
-        { name: 'RuPay', logo: RuPayLogo }
+        { name: 'Account Number - 738301509906', logo: MastercardLogo },
+        { name: 'Name - AMITA SONI', logo: RuPayLogo },
+        { name: 'IFSC Code - ICIC0007383', logo: VisaLogo },
       ].map((option) => (
         <div
           key={option.name}
@@ -191,36 +202,9 @@ function CheckoutPage() {
     </div>
     {selectedCard && (
       <div className="mt-4">
-        <input
-          type="text"
-          name="number"
-          placeholder="Card Number"
-          value={cardDetails.number}
-          onChange={handleCardInputChange}
-          className="w-full p-3 border border-gray-400 mb-4"
-        />
-        <input
-          type="text"
-          name="cvv"
-          placeholder="CVV"
-          value={cardDetails.cvv}
-          onChange={handleCardInputChange}
-          className="w-full p-3 border border-gray-400 mb-4"
-        />
-        <input
-          type="text"
-          name="expiry"
-          placeholder="MM/YY"
-          value={cardDetails.expiry}
-          onChange={handleCardInputChange}
-          className="w-full p-3 border border-gray-400 mb-4"
-          pattern="\d{2}/\d{2}"
-          maxLength="5"
-          title="Enter expiration date in MM/YY format"
-        />
-        <button className="mt-8 px-4 py-3 bg-black text-white font-semibold rounded-sm hover:bg-gray-700">
-          Complete Payment
-        </button>
+                    <button onClick={handleCompletePayment} className="mt-8 px-4 py-3 bg-black text-white font-semibold rounded-sm hover:bg-gray-700">
+                      Complete Payment
+                    </button>
       </div>
     )}
   </div>
@@ -262,20 +246,14 @@ function CheckoutPage() {
     <div>
       <div className="flex justify-between mb-2">
         <span className="font-medium text-xl">{product.name}</span>
-        <span className="font-medium text-xl">Rs. {product.price}</span>
       </div>
       <div className="flex justify-between mb-4">
         <span>Shipping</span>
         <span>{selectedShipping === 'express' ? 'Rs. 100' : 'Free'}</span>
       </div>
-      <div className="flex justify-between mb-4">
-        <span>Discount</span>
-        <span>{discount}%</span>
-      </div>
-
       <div className="flex justify-between mb-4 font-semibold text-xl">
         <span>Total</span>
-        <span>Rs. {product.price + (selectedShipping === 'express' ? 100 : 0) - (product.price * discount) / 100}</span>
+        <span>Rs. {product.price}</span>
       </div>
     </div>
   </div>
